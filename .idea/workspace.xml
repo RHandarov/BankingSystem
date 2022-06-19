@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0b92fd80-9c17-4232-9e10-6f3a491d5cc0" name="Changes" comment="Added Console UI representation">
+    <list default="true" id="0b92fd80-9c17-4232-9e10-6f3a491d5cc0" name="Changes" comment="Added ConsoleEngine's constructor">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/users.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataStorage/FileStorage/Constants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataStorage/FileStorage/FileStorage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataStorage/IDataStorage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataStorage/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Startup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Startup.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/Console/ConsoleEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Console/ConsoleEngine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -13,6 +20,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -32,7 +40,9 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "jdk.selected.JAVA_MODULE": "18"
   }
 }]]></component>
   <component name="RunManager">
@@ -79,7 +89,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655638349964</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added ConsoleEngine's constructor">
+      <created>1655640811113</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1655640811113</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -97,6 +114,7 @@
     <MESSAGE value="First commit" />
     <MESSAGE value="Created app entry point" />
     <MESSAGE value="Added Console UI representation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Console UI representation" />
+    <MESSAGE value="Added ConsoleEngine's constructor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added ConsoleEngine's constructor" />
   </component>
 </project>
