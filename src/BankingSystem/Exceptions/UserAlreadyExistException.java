@@ -1,4 +1,4 @@
-package Exceptions;
+package BankingSystem.Exceptions;
 
 public class UserAlreadyExistException extends RuntimeException {
     public UserAlreadyExistException(String message) {

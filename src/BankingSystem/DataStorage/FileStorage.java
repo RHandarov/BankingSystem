@@ -1,7 +1,7 @@
-package DataStorage;
+package BankingSystem.DataStorage;
 
-import Exceptions.UserAlreadyExistException;
-import Models.User;
+import BankingSystem.Exceptions.UserAlreadyExistException;
+import BankingSystem.Models.User;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -83,7 +83,7 @@ public final class FileStorage implements IDataStorage {
 
         User newUser = new User(this.usersNumber + 1, username, password);
 
-        FileWriter writer = new FileWriter(this.usersFile);
+        FileWriter writer = new FileWriter(this.usersFile, true);
 
         writer.write(newUser.toString() + "\n");
         this.usersNumber++;

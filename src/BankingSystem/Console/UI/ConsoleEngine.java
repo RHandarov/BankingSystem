@@ -1,5 +1,9 @@
-package UI.Console;
+package BankingSystem.Console.UI;
 
+import BankingSystem.Exceptions.UserAlreadyExistException;
+import BankingSystem.Startup;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 public final class ConsoleEngine {
@@ -60,7 +64,26 @@ public final class ConsoleEngine {
             if (authOperationType.equals("login")) {
 
             } else if (authOperationType.equals("register")) {
-                //TODO: implement it
+                while (true) {
+                    System.out.print("Username: ");
+                    String username = ConsoleEngine.scanner.next();
+
+                    System.out.print("Password: ");
+                    String password = ConsoleEngine.scanner.next();
+
+                    try {
+                        Startup.getSession().getDataStorage().saveUser(username, password);
+                    } catch (IOException ioException) {
+                        System.out.println("ERROR: " + ioException.getMessage());
+                        continue;
+                    } catch (UserAlreadyExistException userAlreadyExistException) {
+                        System.out.println(userAlreadyExistException.getMessage());
+                        continue;
+                    }
+
+                    System.out.println("User " + username + " is successfully registered!");
+                    break;
+                }
             } else {
                 System.out.println("Goodbye!");
                 break;

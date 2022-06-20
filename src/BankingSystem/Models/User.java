@@ -1,4 +1,4 @@
-package Models;
+package BankingSystem.Models;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

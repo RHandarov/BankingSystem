@@ -1,6 +1,6 @@
-package DataStorage;
+package BankingSystem.DataStorage;
 
-import Models.User;
+import BankingSystem.Models.User;
 
 import java.io.IOException;
 
