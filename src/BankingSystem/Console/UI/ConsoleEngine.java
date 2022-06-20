@@ -1,13 +1,13 @@
 package BankingSystem.Console.UI;
 
-import BankingSystem.Exceptions.UserAlreadyExistException;
+import BankingSystem.Exceptions.UserExceptions.UserAlreadyExistException;
 import BankingSystem.Startup;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public final class ConsoleEngine {
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
     private static final String[] AUTH_OPERATIONS = new String[] {
             "login",
             "register",
@@ -15,7 +15,7 @@ public final class ConsoleEngine {
     };
 
     private ConsoleEngine() throws InstantiationException {
-        throw new InstantiationException("Cannot instantiate ConsoleEngline class!");
+        throw new InstantiationException("Cannot instantiate ConsoleEngine class!");
     }
 
     private static void showHelloMessage() {
@@ -48,6 +48,25 @@ public final class ConsoleEngine {
         throw new IllegalArgumentException("The operation " + authOperation + " is invalid! It should be login or register!");
     }
 
+    private static void showLoggedUserPage() {
+        System.out.println("Hello, " + Startup.getSession().getLoggedUser().getUsername() + "!");
+        System.out.println("List of possible commands:");
+        System.out.println("1) Logout");
+
+        while (true) {
+            System.out.print("Please enter command number (number in front of each command in the list below): ");
+            int commandId = ConsoleEngine.scanner.nextInt();
+
+            if (commandId == 1) {
+                System.out.println("Goodbye, " + Startup.getSession().getLoggedUser().getUsername() + "! See you soon!");
+                Startup.getSession().logOutUser();
+                break;
+            } else {
+                System.out.println("Invalid command! Please try again!");
+            }
+        }
+    }
+
     public static void run() {
         ConsoleEngine.showHelloMessage();
 
@@ -62,7 +81,21 @@ public final class ConsoleEngine {
             }
 
             if (authOperationType.equals("login")) {
+                while (true) {
+                    System.out.print("Username: ");
+                    String username = ConsoleEngine.scanner.next();
 
+                    System.out.print("Password: ");
+                    String password = ConsoleEngine.scanner.next();
+
+                    try {
+                        Startup.getSession().logInUser(username, password);
+                        ConsoleEngine.showLoggedUserPage();
+                        break;
+                    } catch (RuntimeException runtimeException) {
+                        System.out.println(runtimeException.getMessage());
+                    }
+                }
             } else if (authOperationType.equals("register")) {
                 while (true) {
                     System.out.print("Username: ");

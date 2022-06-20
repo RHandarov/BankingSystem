@@ -7,7 +7,9 @@ import java.security.NoSuchAlgorithmException;
 public class User {
     private static final String HASH_SALT = "$_617.@Athsh";
 
-    private static String hashPassword(String password) {
+    public static String hashPassword(String password) {
+        password = User.HASH_SALT + password + User.HASH_SALT;
+
         try {
             MessageDigest digester = MessageDigest.getInstance("MD5");
             digester.update(password.getBytes(StandardCharsets.UTF_8));
@@ -24,10 +26,30 @@ public class User {
     private String username;
     private String hashedPassword;
 
-    public User(int id, String username, String password) {
+    public User(int id, String username, String hashedPassword) {
+        this.setId(id);
+        this.setUsername(username);
+        this.setHashedPassword(hashedPassword);
+    }
+
+    private void setId(int id) {
         this.id = id;
+    }
+
+    private void setUsername(String username) {
+        if (username == null || username.isEmpty()) {
+            throw new IllegalArgumentException("Username shouldn't be empty!");
+        }
+
         this.username = username;
-        this.hashedPassword = User.hashPassword(User.HASH_SALT + password + User.HASH_SALT);
+    }
+
+    private void setHashedPassword(String hashedPassword) {
+        if (hashedPassword == null || hashedPassword.isEmpty()) {
+            throw new IllegalArgumentException("Password shouldn't be empty!");
+        }
+
+        this.hashedPassword = hashedPassword;
     }
 
     public int getId() {
@@ -40,6 +62,11 @@ public class User {
 
     public String getHashedPassword() {
         return this.hashedPassword;
+    }
+
+    public boolean arePasswordsSame(String checkedPassowrd) {
+        String test = User.hashPassword(checkedPassowrd);
+        return this.hashedPassword.equals(User.hashPassword(checkedPassowrd));
     }
 
     @Override

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0b92fd80-9c17-4232-9e10-6f3a491d5cc0" name="Changes" comment="Implemented password hashing">
-      <change afterPath="$PROJECT_DIR$/src/BankingSystem/Session.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BankingSystem/Startup.java" afterDir="false" />
+    <list default="true" id="0b92fd80-9c17-4232-9e10-6f3a491d5cc0" name="Changes" comment="Implemented login feature and optimized the code">
+      <change afterPath="$PROJECT_DIR$/src/BankingSystem/Exceptions/UserExceptions/UserDoesNotExistException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BankingSystem/Exceptions/UserExceptions/WrongLoginCredentialsException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataStorage/FileStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSystem/DataStorage/FileStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataStorage/IDataStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSystem/DataStorage/IDataStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Exceptions/UserAlreadyExistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSystem/Exceptions/UserAlreadyExistException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSystem/Models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Startup.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Console/ConsoleEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSystem/Console/UI/ConsoleEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/users.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BankingSystem/Console/UI/ConsoleEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSystem/Console/UI/ConsoleEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BankingSystem/DataStorage/FileStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSystem/DataStorage/FileStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BankingSystem/Exceptions/UserAlreadyExistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSystem/Exceptions/UserExceptions/UserAlreadyExistException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BankingSystem/Models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSystem/Models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BankingSystem/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSystem/Session.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655712788882</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Implemented UI part of registration and fixed small bug in writing in DB and do some refactory">
+      <created>1655714504979</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1655714504979</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -147,7 +154,10 @@
     <MESSAGE value="Made some refactory" />
     <MESSAGE value="Implemented ability to save user in the DB" />
     <MESSAGE value="Implemented password hashing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented password hashing" />
+    <MESSAGE value="Implemented UI part of registration and fixed small bug in writing in DB" />
+    <MESSAGE value="Implemented UI part of registration and fixed small bug in writing in DB and do some refactory" />
+    <MESSAGE value="Implemented login feature and optimized the code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented login feature and optimized the code" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
