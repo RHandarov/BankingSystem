@@ -22,4 +22,17 @@ public class User {
     public String getPassword() {
         return this.password;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+
+        builder.append(this.id);
+        builder.append(';');
+        builder.append(this.username);
+        builder.append(';');
+        builder.append(this.password);
+
+        return builder.toString();
+    }
 }

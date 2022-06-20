@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0b92fd80-9c17-4232-9e10-6f3a491d5cc0" name="Changes" comment="Introduced UI and implemented some simple file data storage logic">
+    <list default="true" id="0b92fd80-9c17-4232-9e10-6f3a491d5cc0" name="Changes" comment="Made some refactory">
+      <change afterPath="$PROJECT_DIR$/src/Exceptions/UserAlreadyExistException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataStorage/FileStorage/Constants.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataStorage/FileStorage/FileStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataStorage/FileStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataStorage/FileStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataStorage/FileStorage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataStorage/IDataStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataStorage/IDataStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataStorage/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Startup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Startup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/Console/ConsoleEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/Console/ConsoleEngine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655646876721</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Made some refactory">
+      <created>1655709815001</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1655709815001</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -121,6 +127,7 @@
     <MESSAGE value="Added Console UI representation" />
     <MESSAGE value="Added ConsoleEngine's constructor" />
     <MESSAGE value="Introduced UI and implemented some simple file data storage logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Introduced UI and implemented some simple file data storage logic" />
+    <MESSAGE value="Made some refactory" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made some refactory" />
   </component>
 </project>

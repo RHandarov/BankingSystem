@@ -3,6 +3,8 @@ import DataStorage.IDataStorage;
 import Models.User;
 import UI.Console.ConsoleEngine;
 
+import java.io.IOException;
+
 public class Startup {
     private static IDataStorage dataStorage;
     private static User loggedUser;
@@ -15,7 +17,7 @@ public class Startup {
         return Startup.loggedUser;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         //TODO: add more flexibility in the future
         Startup.dataStorage = FileStorage.getInstance();
         Startup.loggedUser = null;
