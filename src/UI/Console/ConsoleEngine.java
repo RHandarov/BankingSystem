@@ -1,7 +1,5 @@
 package UI.Console;
 
-import DataStorage.User;
-
 import java.util.Scanner;
 
 public final class ConsoleEngine {
@@ -11,7 +9,6 @@ public final class ConsoleEngine {
             "register",
             "exit"
     };
-    private static User loggedUser = null;
 
     private ConsoleEngine() throws InstantiationException {
         throw new InstantiationException("Cannot instantiate ConsoleEngline class!");
@@ -50,8 +47,8 @@ public final class ConsoleEngine {
     public static void run() {
         ConsoleEngine.showHelloMessage();
 
-        String authOperationType;
         while (true) {
+            String authOperationType;
             try {
                 authOperationType = ConsoleEngine.getAuthOperationType();
             } catch (IllegalArgumentException illegalArgumentException) {

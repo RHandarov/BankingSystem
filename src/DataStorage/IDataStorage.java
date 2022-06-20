@@ -1,7 +1,9 @@
 package DataStorage;
 
-import java.io.FileNotFoundException;
+import Models.User;
+
+import java.io.IOException;
 
 public interface IDataStorage {
-    User getUser(String username) throws FileNotFoundException;
+    User getUser(String username) throws IOException;
 }
