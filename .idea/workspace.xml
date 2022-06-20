@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0b92fd80-9c17-4232-9e10-6f3a491d5cc0" name="Changes" comment="Made some refactory">
-      <change afterPath="$PROJECT_DIR$/src/Exceptions/UserAlreadyExistException.java" afterDir="false" />
+    <list default="true" id="0b92fd80-9c17-4232-9e10-6f3a491d5cc0" name="Changes" comment="Implemented ability to save user in the DB">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataStorage/FileStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataStorage/FileStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataStorage/IDataStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataStorage/IDataStorage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Startup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Startup.java" afterDir="false" />
     </list>
@@ -107,7 +104,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655709815001</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Implemented ability to save user in the DB">
+      <created>1655711179170</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1655711179170</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -128,6 +132,14 @@
     <MESSAGE value="Added ConsoleEngine's constructor" />
     <MESSAGE value="Introduced UI and implemented some simple file data storage logic" />
     <MESSAGE value="Made some refactory" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made some refactory" />
+    <MESSAGE value="Implemented ability to save user in the DB" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented ability to save user in the DB" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="newUser.hashedPassword.value" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

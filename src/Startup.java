@@ -22,6 +22,6 @@ public class Startup {
         Startup.dataStorage = FileStorage.getInstance();
         Startup.loggedUser = null;
 
-        ConsoleEngine.run();
+        //ConsoleEngine.run();
     }
 }
