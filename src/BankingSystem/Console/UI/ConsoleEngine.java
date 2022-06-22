@@ -1,9 +1,13 @@
 package BankingSystem.Console.UI;
 
 import BankingSystem.Exceptions.UserExceptions.UserAlreadyExistException;
+import BankingSystem.Models.Accounts.Account;
+import BankingSystem.Models.Accounts.AccountType;
+import BankingSystem.Models.Accounts.SavingsComponentAccount;
 import BankingSystem.Startup;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.Scanner;
 
 public final class ConsoleEngine {
@@ -52,6 +56,7 @@ public final class ConsoleEngine {
         System.out.println("Hello, " + Startup.getSession().getLoggedUser().getUsername() + "!");
         System.out.println("List of possible commands:");
         System.out.println("1) Logout");
+        System.out.println("2) Check all your accounts");
 
         while (true) {
             System.out.print("Please enter command number (number in front of each command in the list below): ");
@@ -61,6 +66,20 @@ public final class ConsoleEngine {
                 System.out.println("Goodbye, " + Startup.getSession().getLoggedUser().getUsername() + "! See you soon!");
                 Startup.getSession().logOutUser();
                 break;
+            } else if (commandId == 2) {
+                Map<Integer, Account> accounts = Startup.getSession().getLoggedUser().getAccounts();
+
+                for (Map.Entry<Integer, Account> entry : accounts.entrySet()) {
+                    Account account = entry.getValue();
+
+                    if (account.getAccountType() == AccountType.CURRENT) {
+                        System.out.println("Current account #" + account.getId() + " has " + account.getAmount() + " lv.");
+                    } else {
+                        System.out.println("Savings component account #" + account.getId() + " connected to account #" +
+                                ((SavingsComponentAccount) account).getAttachedCurrentAccount().getId() +
+                                " has " + account.getAmount() + " lv.");
+                    }
+                }
             } else {
                 System.out.println("Invalid command! Please try again!");
             }
