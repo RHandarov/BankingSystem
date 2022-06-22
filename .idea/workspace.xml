@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0b92fd80-9c17-4232-9e10-6f3a491d5cc0" name="Changes" comment="Implemented checking all person's accounts feature">
-      <change afterPath="$PROJECT_DIR$/data/accounts/currentAccounts.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/accounts/savingComponentAccounts.txt" afterDir="false" />
+    <list default="true" id="0b92fd80-9c17-4232-9e10-6f3a491d5cc0" name="Changes" comment="Implemented the ability to deposit to and withdraw from an account and also optimized the way file DB works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/accounts/currentAccounts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/accounts/currentAccounts.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/accounts/savingComponentAccounts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/accounts/savingComponentAccounts.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/users.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BankingSystem/Console/UI/ConsoleEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSystem/Console/UI/ConsoleEngine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BankingSystem/DataStorage/FileStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSystem/DataStorage/FileStorage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BankingSystem/DataStorage/IDataStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSystem/DataStorage/IDataStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BankingSystem/Models/Accounts/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSystem/Models/Accounts/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BankingSystem/Models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSystem/Models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BankingSystem/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSystem/Session.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BankingSystem/Startup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSystem/Startup.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +158,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655884001799</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Implemented the ability to add new account and also help with possible commands feature">
+      <created>1655887458652</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1655887458652</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -185,7 +193,9 @@
     <MESSAGE value="Implemented login feature and optimized the code" />
     <MESSAGE value="Implemented bank account backend logic" />
     <MESSAGE value="Implemented checking all person's accounts feature" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented checking all person's accounts feature" />
+    <MESSAGE value="Implemented the ability to add new account and also help with possible commands feature" />
+    <MESSAGE value="Implemented the ability to deposit to and withdraw from an account and also optimized the way file DB works" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented the ability to deposit to and withdraw from an account and also optimized the way file DB works" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

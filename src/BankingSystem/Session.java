@@ -47,7 +47,11 @@ public class Session {
         }
     }
 
-    public void logOutUser() {
+    public void logOutUser()  {
         this.loggedUser = null;
+    }
+
+    public void close() throws IOException {
+        this.dataStorage.update();
     }
 }

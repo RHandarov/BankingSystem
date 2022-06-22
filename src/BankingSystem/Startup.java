@@ -15,5 +15,7 @@ public class Startup {
         Startup.session = new Session();
 
         ConsoleEngine.run();
+
+        Startup.session.close();
     }
 }

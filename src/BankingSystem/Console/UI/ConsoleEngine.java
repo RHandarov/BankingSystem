@@ -59,6 +59,8 @@ public final class ConsoleEngine {
         System.out.println("1) Logout");
         System.out.println("2) Check all your accounts");
         System.out.println("3) Create new account");
+        System.out.println("4) Deposit to [account id] [amount of money]");
+        System.out.println("5) Withdraw from [account id] [amount of money]");
     }
 
     private static void showLoggedUserPage() {
@@ -97,6 +99,38 @@ public final class ConsoleEngine {
                     System.out.println("The account is successfully created!");
                 } catch (IOException ioException) {
                     System.err.println("ERROR: Failed to create the account: " + ioException.getMessage());
+                }
+            } else if (commandId == 4) {
+                int accountID = ConsoleEngine.scanner.nextInt();
+                double amount = ConsoleEngine.scanner.nextDouble();
+
+                Account account = Startup.getSession().getLoggedUser().getAccount(accountID);
+
+                if (account == null) {
+                    System.err.println("ERROR: This account does not exist or does not belong to you!");
+                    continue;
+                }
+
+                try {
+                    account.deposit(amount);
+                } catch (Exception exception) {
+                    System.err.println("ERROR: " + exception.getMessage());
+                }
+            } else if (commandId == 5) {
+                int accountID = ConsoleEngine.scanner.nextInt();
+                double amount = ConsoleEngine.scanner.nextDouble();
+
+                Account account = Startup.getSession().getLoggedUser().getAccount(accountID);
+
+                if (account == null) {
+                    System.err.println("ERROR: This account does not exist or does not belong to you!");
+                    continue;
+                }
+
+                try {
+                    account.withdraw(amount);
+                } catch (Exception exception) {
+                    System.err.println("ERROR: " + exception.getMessage());
                 }
             } else {
                 System.out.println("Invalid command! Please try again!");

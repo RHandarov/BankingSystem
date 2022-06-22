@@ -1,6 +1,8 @@
 package BankingSystem.DataStorage;
 
 import BankingSystem.Exceptions.UserExceptions.UserAlreadyExistException;
+import BankingSystem.Models.Accounts.Account;
+import BankingSystem.Models.Accounts.AccountType;
 import BankingSystem.Models.Accounts.CurrentAccount;
 import BankingSystem.Models.Accounts.SavingsComponentAccount;
 import BankingSystem.Models.User;
@@ -94,6 +96,42 @@ public final class FileStorage implements IDataStorage {
         scanner.close();
     }
 
+    private void saveUsersInFile() throws IOException {
+        File usersFile = new File(FileStorage.USERS_FILE_PATH);
+        FileWriter writer = new FileWriter(usersFile);
+
+        for (Map.Entry<String, User> entry : this.users.entrySet()) {
+            writer.write(entry.getValue() + "\n");
+        }
+
+        writer.close();
+    }
+
+    private void saveAccountsInFile() throws IOException {
+        File currentAccountsFile = new File(FileStorage.CURRENT_ACCOUNTS_FILE_PATH);
+        File savingsAccountsFile = new File(FileStorage.SAVING_COMPONENT_ACCOUNTS_FILE_PATH);
+
+        FileWriter currentAccountsWriter = new FileWriter(currentAccountsFile);
+        FileWriter savingAccountsWriter = new FileWriter(savingsAccountsFile);
+
+        for (Map.Entry<String, User> userEntry : this.users.entrySet()) {
+            User user = userEntry.getValue();
+
+            for (Map.Entry<Integer, Account> accountEntry : user.getAccounts().entrySet()) {
+                Account account = accountEntry.getValue();
+
+                if (account.getAccountType() == AccountType.CURRENT) {
+                    currentAccountsWriter.write(account + "\n");
+                } else {
+                    savingAccountsWriter.write(account + "\n");
+                }
+            }
+        }
+
+        currentAccountsWriter.close();
+        savingAccountsWriter.close();
+    }
+
     public static FileStorage getInstance() throws IOException {
         if (FileStorage.instance == null) {
             FileStorage.instance = new FileStorage();
@@ -108,23 +146,17 @@ public final class FileStorage implements IDataStorage {
     }
 
     @Override
-    public void saveUser(String username, String password) throws IOException {
+    public void saveUser(String username, String password) {
         if (this.getUser(username) != null) {
             throw new UserAlreadyExistException("User with username " + username + " has already registered! Please try with another username!");
         }
 
         User newUser = new User(this.users.size() + 1, username, User.hashPassword(password));
-
-        FileWriter writer = new FileWriter(FileStorage.USERS_FILE_PATH, true);
-
-        writer.write(newUser + "\n");
         this.users.put(username, newUser);
-
-        writer.close();
     }
 
     @Override
-    public void saveAccount(User owner) throws IOException {
+    public void saveAccount(User owner) {
         FileStorage.MAX_ACCOUNT_ID++;
         CurrentAccount currentAccount = new CurrentAccount(FileStorage.MAX_ACCOUNT_ID, 0.0, owner);
         owner.addAccount(currentAccount);
@@ -133,18 +165,12 @@ public final class FileStorage implements IDataStorage {
         SavingsComponentAccount savingsAccount = new SavingsComponentAccount(FileStorage.MAX_ACCOUNT_ID, 0.0, owner, currentAccount);
         owner.addAccount(savingsAccount);
 
-        currentAccount.setAttachedSavingsComponentAccount(savingsAccount);;
+        currentAccount.setAttachedSavingsComponentAccount(savingsAccount);
+    }
 
-        File currentAccountsFile = new File(FileStorage.CURRENT_ACCOUNTS_FILE_PATH);
-        File savingsAccountsFile = new File(FileStorage.SAVING_COMPONENT_ACCOUNTS_FILE_PATH);
-
-        FileWriter currentAccountsWriter = new FileWriter(currentAccountsFile);
-        FileWriter savingsAccountWriter = new FileWriter(savingsAccountsFile);
-
-        currentAccountsWriter.write(currentAccount + "\n");
-        savingsAccountWriter.write(savingsAccount + "\n");
-
-        currentAccountsWriter.close();
-        savingsAccountWriter.close();
+    @Override
+    public void update() throws IOException {
+        this.saveUsersInFile();
+        this.saveAccountsInFile();
     }
 }
