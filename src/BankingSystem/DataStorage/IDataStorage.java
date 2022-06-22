@@ -8,4 +8,6 @@ public interface IDataStorage {
     User getUser(String username) throws IOException;
 
     void saveUser(String username, String password) throws IOException;
+
+    void saveAccount(User owner) throws IOException;
 }

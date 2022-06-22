@@ -1,6 +1,8 @@
 package BankingSystem.DataStorage;
 
 import BankingSystem.Exceptions.UserExceptions.UserAlreadyExistException;
+import BankingSystem.Models.Accounts.CurrentAccount;
+import BankingSystem.Models.Accounts.SavingsComponentAccount;
 import BankingSystem.Models.User;
 
 import java.io.File;
@@ -11,8 +13,13 @@ import java.util.Map;
 import java.util.Scanner;
 
 public final class FileStorage implements IDataStorage {
-    public static final String USERS_FILE_PATH = "data/users.txt";
-    public static final String TOKEN_SEPARATOR = ";";
+    private static final String USERS_FILE_PATH = "data/users.txt";
+    private static final String CURRENT_ACCOUNTS_FILE_PATH = "data/accounts/currentAccounts.txt";
+    private static final String SAVING_COMPONENT_ACCOUNTS_FILE_PATH = "data/accounts/savingComponentAccounts.txt";
+
+    private static final String TOKEN_SEPARATOR = ";";
+
+    private static int MAX_ACCOUNT_ID = 0;
 
     private static FileStorage instance = null;
 
@@ -20,6 +27,7 @@ public final class FileStorage implements IDataStorage {
 
     private FileStorage() throws IOException {
         this.loadUsers();
+        this.loadAccounts();
     }
 
     private void loadUsers() throws IOException {
@@ -37,6 +45,50 @@ public final class FileStorage implements IDataStorage {
             String currentPassword = tokens[2];
 
             this.users.put(currentUsername, new User(currentId, currentUsername, currentPassword));
+        }
+
+        scanner.close();
+    }
+
+    private void loadAccounts() throws IOException {
+        File currentAccountFile = new File(FileStorage.CURRENT_ACCOUNTS_FILE_PATH);
+        Scanner scanner = new Scanner(currentAccountFile);
+
+        while (scanner.hasNextLine()) {
+            String[] tokens = scanner.nextLine().split(FileStorage.TOKEN_SEPARATOR);
+
+            int accountID = Integer.parseInt(tokens[0]);
+            double accountAmount = Double.parseDouble(tokens[1]);
+            User owner = this.users.get(tokens[2]);
+            String accountType = tokens[3];
+            int connectedAccountID = Integer.parseInt(tokens[4]);
+
+            FileStorage.MAX_ACCOUNT_ID = Math.max(FileStorage.MAX_ACCOUNT_ID, accountID);
+
+            CurrentAccount currentAccount = new CurrentAccount(accountID, accountAmount, owner);
+            owner.addAccount(currentAccount);
+        }
+
+        scanner.close();
+
+        File savingsFile = new File(FileStorage.SAVING_COMPONENT_ACCOUNTS_FILE_PATH);
+        scanner = new Scanner(savingsFile);
+
+        while (scanner.hasNextLine()) {
+            String[] tokens = scanner.nextLine().split(FileStorage.TOKEN_SEPARATOR);
+
+            int accountID = Integer.parseInt(tokens[0]);
+            double accountAmount = Double.parseDouble(tokens[1]);
+            User owner = this.users.get(tokens[2]);
+            String accountType = tokens[3];
+            int connectedAccountID = Integer.parseInt(tokens[4]);
+
+            FileStorage.MAX_ACCOUNT_ID = Math.max(FileStorage.MAX_ACCOUNT_ID, accountID);
+
+            CurrentAccount connectedAccount = (CurrentAccount) owner.getAccount(connectedAccountID);
+            SavingsComponentAccount currentAccount = new SavingsComponentAccount(accountID, accountAmount, owner, connectedAccount);
+            connectedAccount.setAttachedSavingsComponentAccount(currentAccount);
+            owner.addAccount(currentAccount);
         }
 
         scanner.close();
@@ -69,5 +121,30 @@ public final class FileStorage implements IDataStorage {
         this.users.put(username, newUser);
 
         writer.close();
+    }
+
+    @Override
+    public void saveAccount(User owner) throws IOException {
+        FileStorage.MAX_ACCOUNT_ID++;
+        CurrentAccount currentAccount = new CurrentAccount(FileStorage.MAX_ACCOUNT_ID, 0.0, owner);
+        owner.addAccount(currentAccount);
+
+        FileStorage.MAX_ACCOUNT_ID++;
+        SavingsComponentAccount savingsAccount = new SavingsComponentAccount(FileStorage.MAX_ACCOUNT_ID, 0.0, owner, currentAccount);
+        owner.addAccount(savingsAccount);
+
+        currentAccount.setAttachedSavingsComponentAccount(savingsAccount);;
+
+        File currentAccountsFile = new File(FileStorage.CURRENT_ACCOUNTS_FILE_PATH);
+        File savingsAccountsFile = new File(FileStorage.SAVING_COMPONENT_ACCOUNTS_FILE_PATH);
+
+        FileWriter currentAccountsWriter = new FileWriter(currentAccountsFile);
+        FileWriter savingsAccountWriter = new FileWriter(savingsAccountsFile);
+
+        currentAccountsWriter.write(currentAccount + "\n");
+        savingsAccountWriter.write(savingsAccount + "\n");
+
+        currentAccountsWriter.close();
+        savingsAccountWriter.close();
     }
 }

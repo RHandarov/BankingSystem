@@ -4,6 +4,7 @@ import BankingSystem.Exceptions.UserExceptions.UserAlreadyExistException;
 import BankingSystem.Models.Accounts.Account;
 import BankingSystem.Models.Accounts.AccountType;
 import BankingSystem.Models.Accounts.SavingsComponentAccount;
+import BankingSystem.Models.User;
 import BankingSystem.Startup;
 
 import java.io.IOException;
@@ -52,17 +53,25 @@ public final class ConsoleEngine {
         throw new IllegalArgumentException("The operation " + authOperation + " is invalid! It should be login or register!");
     }
 
-    private static void showLoggedUserPage() {
-        System.out.println("Hello, " + Startup.getSession().getLoggedUser().getUsername() + "!");
+    private static void showHelpMessage() {
         System.out.println("List of possible commands:");
+        System.out.println("0) Show list of possible commands");
         System.out.println("1) Logout");
         System.out.println("2) Check all your accounts");
+        System.out.println("3) Create new account");
+    }
+
+    private static void showLoggedUserPage() {
+        System.out.println("Hello, " + Startup.getSession().getLoggedUser().getUsername() + "!");
+        ConsoleEngine.showHelpMessage();
 
         while (true) {
             System.out.print("Please enter command number (number in front of each command in the list below): ");
             int commandId = ConsoleEngine.scanner.nextInt();
 
-            if (commandId == 1) {
+            if (commandId == 0) {
+                ConsoleEngine.showHelpMessage();
+            } else if (commandId == 1) {
                 System.out.println("Goodbye, " + Startup.getSession().getLoggedUser().getUsername() + "! See you soon!");
                 Startup.getSession().logOutUser();
                 break;
@@ -79,6 +88,15 @@ public final class ConsoleEngine {
                                 ((SavingsComponentAccount) account).getAttachedCurrentAccount().getId() +
                                 " has " + account.getAmount() + " lv.");
                     }
+                }
+            } else if (commandId == 3) {
+                try {
+                    User currentUser = Startup.getSession().getLoggedUser();
+                    Startup.getSession().getDataStorage().saveAccount(currentUser);
+
+                    System.out.println("The account is successfully created!");
+                } catch (IOException ioException) {
+                    System.err.println("ERROR: Failed to create the account: " + ioException.getMessage());
                 }
             } else {
                 System.out.println("Invalid command! Please try again!");

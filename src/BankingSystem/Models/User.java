@@ -106,6 +106,10 @@ public class User {
         return new HashMap<>(this.accounts);
     }
 
+    public Account getAccount(int id) {
+        return this.accounts.get(id);
+    }
+
     public boolean arePasswordsSame(String checkedPassowrd) {
         String test = User.hashPassword(checkedPassowrd);
         return this.hashedPassword.equals(User.hashPassword(checkedPassowrd));

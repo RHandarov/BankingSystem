@@ -75,7 +75,7 @@ public abstract class Account {
         builder.append(';');
         builder.append(this.amount);
         builder.append(';');
-        builder.append(this.owner.getId());
+        builder.append(this.owner.getUsername());
         builder.append(';');
         builder.append(this.accountType);
 
