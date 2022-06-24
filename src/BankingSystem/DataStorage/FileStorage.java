@@ -1,11 +1,13 @@
 package BankingSystem.DataStorage;
 
+import BankingSystem.Exceptions.UserExceptions.InvalidUserRemovalException;
 import BankingSystem.Exceptions.UserExceptions.UserAlreadyExistException;
 import BankingSystem.Models.Accounts.Account;
 import BankingSystem.Models.Accounts.AccountType;
 import BankingSystem.Models.Accounts.CurrentAccount;
 import BankingSystem.Models.Accounts.SavingsComponentAccount;
 import BankingSystem.Models.User;
+import BankingSystem.Startup;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -22,6 +24,7 @@ public final class FileStorage implements IDataStorage {
     private static final String TOKEN_SEPARATOR = ";";
 
     private static int MAX_ACCOUNT_ID = 0;
+    private static int MAX_USER_ID = 0;
 
     private static FileStorage instance = null;
 
@@ -45,6 +48,8 @@ public final class FileStorage implements IDataStorage {
             int currentId = Integer.parseInt(tokens[0]);
             String currentUsername = tokens[1];
             String currentPassword = tokens[2];
+
+            FileStorage.MAX_USER_ID = Math.max(FileStorage.MAX_USER_ID, currentId);
 
             this.users.put(currentUsername, new User(currentId, currentUsername, currentPassword));
         }
@@ -151,8 +156,22 @@ public final class FileStorage implements IDataStorage {
             throw new UserAlreadyExistException("User with username " + username + " has already registered! Please try with another username!");
         }
 
-        User newUser = new User(this.users.size() + 1, username, User.hashPassword(password));
+        FileStorage.MAX_USER_ID++;
+        User newUser = new User(FileStorage.MAX_USER_ID, username, User.hashPassword(password));
         this.users.put(username, newUser);
+    }
+
+    @Override
+    public void deleteUser(User user) {
+        if (user == null) {
+            throw new NullPointerException("You should provide a valid user!");
+        }
+
+        if (!user.equals(Startup.getSession().getLoggedUser())) {
+            throw new InvalidUserRemovalException("You cannot delete other user account!");
+        }
+
+        this.users.remove(user.getUsername());
     }
 
     @Override

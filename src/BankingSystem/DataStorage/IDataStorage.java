@@ -9,6 +9,8 @@ public interface IDataStorage {
 
     void saveUser(String username, String password) throws IOException;
 
+    void deleteUser(User user);
+
     void saveAccount(User owner) throws IOException;
 
     void deleteAccount(User owner, int accountId);

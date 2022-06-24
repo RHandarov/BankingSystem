@@ -62,6 +62,7 @@ public final class ConsoleEngine {
         System.out.println("4) Deposit to [account id] [amount of money]");
         System.out.println("5) Withdraw from [account id] [amount of money]");
         System.out.println("6) Remove an account [account id] (only current accounts)");
+        System.out.println("7) Delete your account");
     }
 
     private static void showLoggedUserPage() {
@@ -144,6 +145,22 @@ public final class ConsoleEngine {
                 } catch (Exception exception) {
                     System.err.println("ERROR: " + exception.getMessage());
                 }
+            } else if (commandId == 7) {
+                System.out.print("Are you sure you want to delete your profile? (yes or no): ");
+                String response = ConsoleEngine.scanner.next();
+
+                if (response.equalsIgnoreCase("yes")) {
+                    try {
+                        User currentUser = Startup.getSession().getLoggedUser();
+                        Startup.getSession().getDataStorage().deleteUser(currentUser);
+                        Startup.getSession().logOutUser();
+
+                        System.out.println("Your profile has been successfully deleted! Thank you that you was our client!");
+                        break;
+                    } catch (Exception exception) {
+                        System.err.println("ERROR: " + exception.getMessage());
+                    }
+                }
             } else {
                 System.out.println("Invalid command! Please try again!");
             }
@@ -165,8 +182,12 @@ public final class ConsoleEngine {
 
             if (authOperationType.equals("login")) {
                 while (true) {
-                    System.out.print("Username: ");
+                    System.out.print("Username (enter back if you want to return back to the main menu): ");
                     String username = ConsoleEngine.scanner.next();
+
+                    if (username.equalsIgnoreCase("back")) {
+                        break;
+                    }
 
                     System.out.print("Password: ");
                     String password = ConsoleEngine.scanner.next();
@@ -181,8 +202,12 @@ public final class ConsoleEngine {
                 }
             } else if (authOperationType.equals("register")) {
                 while (true) {
-                    System.out.print("Username: ");
+                    System.out.print("Username ((enter back if you want to return back to the main menu): ");
                     String username = ConsoleEngine.scanner.next();
+
+                    if (username.equalsIgnoreCase("back")) {
+                        break;
+                    }
 
                     System.out.print("Password: ");
                     String password = ConsoleEngine.scanner.next();
