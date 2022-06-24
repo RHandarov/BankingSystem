@@ -1,7 +1,10 @@
 package BankingSystem.Models;
 
 import BankingSystem.Exceptions.AccountExceptions.AccountNotFoundException;
+import BankingSystem.Exceptions.AccountExceptions.InvalidAccountRemovalException;
 import BankingSystem.Models.Accounts.Account;
+import BankingSystem.Models.Accounts.AccountType;
+import BankingSystem.Models.Accounts.CurrentAccount;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -18,8 +21,8 @@ public class User {
         try {
             MessageDigest digester = MessageDigest.getInstance("MD5");
             digester.update(password.getBytes(StandardCharsets.UTF_8));
-            byte[] hasedBytes = digester.digest();
-            return new String(hasedBytes, StandardCharsets.UTF_8).toUpperCase();
+            byte[] hashedBytes = digester.digest();
+            return new String(hashedBytes, StandardCharsets.UTF_8).toUpperCase();
         } catch (NoSuchAlgorithmException exception) {
             exception.printStackTrace();
         }
@@ -30,7 +33,7 @@ public class User {
     private int id;
     private String username;
     private String hashedPassword;
-    private Map<Integer, Account> accounts;
+    private final Map<Integer, Account> accounts;
 
     public User(int id, String username, String hashedPassword) {
         this.setId(id);
@@ -87,7 +90,14 @@ public class User {
             throw new AccountNotFoundException("Account with number " + accountId + " does not exist!");
         }
 
+        Account removingAccount = this.accounts.get(accountId);
+
+        if (removingAccount.getAccountType() == AccountType.SAVINGS_COMPONENT) {
+            throw new InvalidAccountRemovalException("You cannot delete this account! You should get an id of a current account!");
+        }
+
         this.accounts.remove(accountId);
+        this.accounts.remove(((CurrentAccount) removingAccount).getAttachedSavingsComponentAccount().getId());
     }
 
     public int getId() {
@@ -110,9 +120,8 @@ public class User {
         return this.accounts.get(id);
     }
 
-    public boolean arePasswordsSame(String checkedPassowrd) {
-        String test = User.hashPassword(checkedPassowrd);
-        return this.hashedPassword.equals(User.hashPassword(checkedPassowrd));
+    public boolean arePasswordsSame(String checkedPassword) {
+        return this.hashedPassword.equals(User.hashPassword(checkedPassword));
     }
 
     @Override
@@ -140,6 +149,6 @@ public class User {
 
         User comparedUser = (User) comparedObject;
 
-        return this.username == comparedUser.username;
+        return this.username.equals(comparedUser.username);
     }
 }

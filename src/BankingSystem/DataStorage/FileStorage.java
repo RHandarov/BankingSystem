@@ -169,6 +169,15 @@ public final class FileStorage implements IDataStorage {
     }
 
     @Override
+    public void deleteAccount(User owner, int accountId) {
+        if (owner == null) {
+            throw new NullPointerException("You should provide a valid user!");
+        }
+
+        owner.removeAccount(accountId);
+    }
+
+    @Override
     public void update() throws IOException {
         this.saveUsersInFile();
         this.saveAccountsInFile();

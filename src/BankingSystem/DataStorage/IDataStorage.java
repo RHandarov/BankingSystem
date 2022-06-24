@@ -11,5 +11,7 @@ public interface IDataStorage {
 
     void saveAccount(User owner) throws IOException;
 
+    void deleteAccount(User owner, int accountId);
+
     void update() throws IOException;
 }

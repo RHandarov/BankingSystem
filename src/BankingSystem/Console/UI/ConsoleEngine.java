@@ -61,6 +61,7 @@ public final class ConsoleEngine {
         System.out.println("3) Create new account");
         System.out.println("4) Deposit to [account id] [amount of money]");
         System.out.println("5) Withdraw from [account id] [amount of money]");
+        System.out.println("6) Remove an account [account id] (only current accounts)");
     }
 
     private static void showLoggedUserPage() {
@@ -129,6 +130,17 @@ public final class ConsoleEngine {
 
                 try {
                     account.withdraw(amount);
+                } catch (Exception exception) {
+                    System.err.println("ERROR: " + exception.getMessage());
+                }
+            } else if (commandId == 6) {
+                int accountId = ConsoleEngine.scanner.nextInt();
+
+                try {
+                    User currentUser = Startup.getSession().getLoggedUser();
+                    Startup.getSession().getDataStorage().deleteAccount(currentUser, accountId);
+
+                    System.out.println("Account #" + accountId + " has been successfully deleted!");
                 } catch (Exception exception) {
                     System.err.println("ERROR: " + exception.getMessage());
                 }
