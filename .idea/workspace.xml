@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0b92fd80-9c17-4232-9e10-6f3a491d5cc0" name="Changes" comment="Implemented account removal">
-      <change afterPath="$PROJECT_DIR$/src/BankingSystem/Exceptions/UserExceptions/InvalidUserRemovalException.java" afterDir="false" />
+    <list default="true" id="0b92fd80-9c17-4232-9e10-6f3a491d5cc0" name="Changes" comment="Implemented user account removal and added back command for convenience">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/users.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BankingSystem/Console/UI/ConsoleEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSystem/Console/UI/ConsoleEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BankingSystem/DataStorage/FileStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSystem/DataStorage/FileStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BankingSystem/DataStorage/IDataStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSystem/DataStorage/IDataStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BankingSystem/Models/Accounts/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSystem/Models/Accounts/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BankingSystem/Models/Accounts/CurrentAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSystem/Models/Accounts/CurrentAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BankingSystem/Models/Accounts/SavingsComponentAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BankingSystem/Models/Accounts/SavingsComponentAccount.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656058583517</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Implemented user account removal and added back command for convenience">
+      <created>1656061235525</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1656061235525</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -207,7 +212,8 @@
     <MESSAGE value="Implemented the ability to add new account and also help with possible commands feature" />
     <MESSAGE value="Implemented the ability to deposit to and withdraw from an account and also optimized the way file DB works" />
     <MESSAGE value="Implemented account removal" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented account removal" />
+    <MESSAGE value="Implemented user account removal and added back command for convenience" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented user account removal and added back command for convenience" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

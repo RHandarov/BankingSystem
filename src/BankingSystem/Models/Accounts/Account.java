@@ -65,7 +65,7 @@ public abstract class Account {
 
     public abstract void deposit(double addedAmount);
 
-    public abstract void withdraw(double withdrawedAmount);
+    public abstract void withdraw(double withdrawnAmount);
 
     @Override
     public String toString() {

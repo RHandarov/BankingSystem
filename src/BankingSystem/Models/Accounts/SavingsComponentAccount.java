@@ -48,17 +48,17 @@ public class SavingsComponentAccount extends Account {
     }
 
     @Override
-    public void withdraw(double withdrawedAmount) {
-        if (withdrawedAmount <= 0.0) {
+    public void withdraw(double withdrawnAmount) {
+        if (withdrawnAmount <= 0.0) {
             throw new IllegalArgumentException("You cannot withdraw non-positive amount of money!");
         }
 
-        if (withdrawedAmount > this.amount) {
-            throw new InvalidTransferOperationException("You cannot withdraw nore than you have!");
+        if (withdrawnAmount > this.amount) {
+            throw new InvalidTransferOperationException("You cannot withdraw more than you have!");
         }
 
-        this.attachedCurrentAccount.deposit(withdrawedAmount);
-        this.amount -= withdrawedAmount;
+        this.attachedCurrentAccount.deposit(withdrawnAmount);
+        this.amount -= withdrawnAmount;
     }
 
     @Override
